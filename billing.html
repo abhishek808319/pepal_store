@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Pepal Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="billing.css">
+</head>
+<body>
+    <div class="billing-container">
+        <h2>Delivery Details</h2>
+        <form id="billing-form">
+            <input type="text" id="cust-name" placeholder="Full Name" required>
+            <input type="tel" id="cust-phone" placeholder="WhatsApp Number" required>
+            <textarea id="cust-address" placeholder="House No, Building, Area" required></textarea>
+            
+            <div class="location-box">
+                <p>For faster delivery, share your live location:</p>
+                <button type="button" id="location-btn" onclick="getLocation()">
+                    📍 Share Live Location
+                </button>
+                <div id="location-status">Location not attached</div>
+            </div>
+
+            <div class="order-summary">
+                <p>Total Amount: <span id="final-amount">₹0</span></p>
+            </div>
+
+            <button type="submit" class="confirm-btn">Confirm Order on WhatsApp</button>
+        </form>
+    </div>
+
+    <script src="billing.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart | PEPAL STORE</title>
+    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <div class="nav-right">
+    <a href="cart.html" class="cart-anchor">
+        <span class="cart-icon">🛒</span>
+        <span id="cart-count">0</span>
+    </a>
+</div>
+    <div class="cart-container">
+    <h2>My Shopping Cart</h2>
+    
+    <div id="cart-list"></div>
+
+    <div class="cart-summary">
+        <div class="total-row">
+            <span>Total Amount:</span>
+            <span>₹<span id="grand-total">0</span></span>
+        </div>
+        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+    </div>
+</div>
+
+<script src="cart.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

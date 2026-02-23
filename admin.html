@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PEPAL STORE | Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style-admin.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body class="admin-body">
+
+<div id="login-section" class="auth-card">
+        <h2>🔒 PEPAL Admin</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-pass" placeholder="Password">
+        <button onclick="handleLogin()" id="login-btn" class="save-btn">Login</button>
+        <a href="index.html" style="display:block; margin-top:15px; color:#666;">View Store</a>
+    </div>
+
+    <div id="admin-dashboard" class="hidden dashboard-layout">
+<aside class="sidebar">
+            <h2>Dashboard</h2>
+            <button onclick="showSection('banner-sec')">🖼️ Update Banners</button>
+            <button onclick="showSection('product-sec')">📦 Add Products</button>
+            <button onclick="showSection('manage-items-sec'); loadAdminProducts()">📋 Manage Inventory</button>
+            <a href="index.html" class="return-link">🏠 Return to Store</a>
+            
+            <button onclick="handleLogout()" style="color: #ff7675; border-color: #ff7675;">Logout</button>
+        </aside>
+
+        <main class="admin-content">
+            <section id="banner-sec">
+                <h3>Update Offer Banners</h3>
+                <p>Paste image URLs for the sliding slider</p>
+                <input type="text" id="b1" placeholder="Banner URL 1">
+                <input type="text" id="b2" placeholder="Banner URL 2">
+                <input type="text" id="b3" placeholder="Banner URL 3">
+                <input type="text" id="b4" placeholder="Banner URL 4">
+                <button onclick="saveBanners()" class="save-btn">Update All Banners</button>
+            </section>
+<section id="manage-items-sec" class="admin-panel hidden">
+    <h3>Inventory Management</h3>
+    <p>Remove items or toggle "Sold Out" status.</p>
+    <div id="admin-product-list">
+        </div>
+</section>
+            <section id="product-sec" class="hidden">
+                <h3>Add New Product</h3>
+                <input type="text" id="p-name" placeholder="Product Name">
+                <input type="number" id="p-price" placeholder="Price (₹)">
+                <input type="text" id="p-unit" placeholder="Unit (e.g. 1kg)">
+                <input type="number" id="p-stock" placeholder="Stock Quantity (e.g. 50)" min="0">
+                <select id="p-category">
+                    </select>
+                <input type="text" id="p-img" placeholder="Image URL">
+<div class="admin-form">
+    <button onclick="addItem()" id="save-btn">Add Product to Store</button>
+</div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEPAL STORE | Online Grocery</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="showHome()">PEPAL STORE</div>
+            
+<div class="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input 
+        type="search" 
+        id="item-search" 
+        placeholder="Search for products..." 
+        oninput="searchItems()" 
+        autocomplete="off"
+    >
+</div>
+
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-link">
+                    <span class="cart-btn-icon">🛒</span>
+                    <span id="cart-count">0</span>
+                </a>
+                <a href="admin.html" class="admin-btn">⚙️</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        
+        <section id="home-content">
+            <div class="slider-container">
+                <div id="main-slider" class="slider">
+                    </div>
+            </div>
+
+            <div class="category-section">
+                <h3>Grocery & Kitchen</h3>
+                <div id="grocery-grid" class="category-grid"></div>
+            </div>
+
+            <div class="category-section">
+                <h3>Snacks & Drinks</h3>
+                <div id="snacks-grid" class="category-grid"></div>
+            </div>
+
+            <div class="category-section">
+                <h3>Household Essentials</h3>
+                <div id="household-grid" class="category-grid"></div>
+            </div>
+
+            <div class="category-section">
+                <h3>Personal Care</h3>
+                <div id="beauty-grid" class="category-grid"></div>
+            </div>
+        </section>
+
+        <section id="items-view" class="hidden">
+            <div class="view-header">
+                <button class="back-btn" onclick="showHome()">← Back</button>
+                <h2 id="selected-cat-title">Category Name</h2>
+            </div>
+            <div id="product-list" class="product-grid">
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Pepal Store. All rights reserved.</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
