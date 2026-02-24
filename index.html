@@ -6,15 +6,34 @@
     <title>PEPAL STORE | Online Grocery</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Okra:wght@400;600&display=swap" rel="stylesheet">
+</head>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo" onclick="showHome()">PEPAL STORE</div>
+            <div class="logo" onclick="showHome()">
+                <svg width="200" height="60" viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- <defs>
+    <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+  </defs> -->
+  
+  <!-- <path d="M35 10 C45 10, 55 20, 55 35 C55 50, 40 55, 35 55 C30 55, 15 50, 15 35 C15 20, 25 10, 35 10 Z" fill="url(#leafGradient)" />
+  <path d="M35 10 Q40 30 35 55" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5" /> -->
+  
+  <text x="13" y="45" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="32" fill="#333333">Pepal</text>
+</svg>
+            </div>
             
 <div class="search-wrapper">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon"><img src="images/search.png" alt="🔍" width="24"></span>
     <input 
         type="search" 
         id="item-search" 
@@ -26,10 +45,23 @@
 
             <div class="nav-icons">
                 <a href="cart.html" class="cart-link">
-                    <span class="cart-btn-icon">🛒</span>
+                    <span class="cart-btn-icon"><img src="images/cart-logo.png" alt="🛒" width="24"></span>
                     <span id="cart-count">0</span>
                 </a>
-                <a href="admin.html" class="admin-btn">⚙️</a>
+                <!-- <a href="" class="admin-btn">⚙️</a> -->
+                <button class="hamburger-menu navbar2 nav-right2" id="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                 <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <button class="close-menu-btn" id="close-menu-btn"><i class="fas fa-times"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#Home">Products</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="admin.html" class="admin-btn"id="mobile-logout-btn">Admin Login</a></li> </ul>
+    </div>
             </div>
         </div>
     </nav>
@@ -44,7 +76,9 @@
 
             <div class="category-section">
                 <h3>Grocery & Kitchen</h3>
-                <div id="grocery-grid" class="category-grid"></div>
+                <div id="grocery-grid" class="category-grid">
+                    
+                </div>
             </div>
 
             <div class="category-section">
@@ -73,16 +107,15 @@
         </section>
 
     </main>
-
-    <footer>
-        <p>&copy; 2024 Pepal Store. All rights reserved.</p>
+<footer >
+        <p  >&copy; 2024 Pepal Store. All rights reserved.</p>
     </footer>
-
+   <div class="mobile-backdrop" id="mobile-backdrop"></div> 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    
+
     <script src="script.js"></script>
 
 </body>
