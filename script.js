@@ -16,18 +16,118 @@ const db = firebase.firestore();
 
 // 2. CATEGORY DATA (To rebuild your grid)
 const storeData = {
-    "Grocery & Kitchen": ["Vegetable and Fruit", "Atta Rice & Dal", "Oil, Ghee & Masala", "Dairy, Bread & Egg", "Tea & Coffee"],
-    "Snacks & Drink": ["Chip & Namkeen", "Sweet & Chocolate", "Drinks & Juice", "Ice cream & More"],
-    "Household": ["Home & Lifestyle", "Cleaners & Repellents", "Stationary & Games"],
-    "Personal Care": ["Bath & Body", "Baby Care", "Hair care", "Skin & Face"]
+
+    "Grocery & Kitchen": [
+        { name: "Vegetable and Fruit", img: "images/veg&fruits.jpg" },
+        { name: "Atta Rice & Dal", img: "images/atta-rice&dal.png" },
+        { name: "Oil, Ghee & Masala", img: "images/ghee.webp" },
+        { name: "Dairy, Bread & Egg", img: "images/dairy-bread.jpg" },
+        { name: "Tea & Coffee", img: "images/teacoffee.jpg" },
+        { name: "Dry Fruits & Nuts", img: "images/dry fruits.jpg" },
+        { name: "Noodles", img: "images/noodles.jpg" },
+        { name: "Kitchen & Appliances", img: "images/kitchen&applicanes.jpg" }
+    ],
+
+    "Snacks & Drink": [
+        { name: "Chip & Namkeen", img: "images/chips&namkeen.png" },
+        { name: "Sweet & Chocolate", img: "images/sweets&chocolates.jpg" },
+        { name: "Drinks & Juice", img: "images/drinks&juices.jpg" },
+        { name: "Ice cream & More", img: "images/ice-creams.jpg" },
+        { name: "Bakery & Biscuits", img: "images/biscuits-and-cakes.png" },
+        { name: "Sauces & Spreads", img: "images/sauces.jpg" },
+        { name: "Paan masala & Cigrate", img: "images/pan masala.jpg" }
+    ],
+
+    "Household": [
+        { name: "Home & Lifestyle", img: "images/home.jpg" },
+        { name: "Cleaners & Repellents", img: "images/cleanser.jfif" },
+        { name: "Stationary & Games", img: "images/stationary.jfif" },
+        { name: "Pooja Essentials", img: "images/pooja.jfif" },
+        { name: "Electronics", img: "images/electronics..jpg" }
+    ],
+
+    "Personal Care": [
+        { name: "Bath & Body", img: "images/bath&body.jfif" },
+        { name: "Baby Care", img: "images/babycare.jfif" },
+        { name: "Hair care", img: "images/hair.jfif" },
+        { name: "Skin & Face", img: "images/skin&fash.jfif" },
+        { name: "Beauty Cosmetics", img: "images/beautycosematics.jfif" },
+        { name: "Feminiee Hygiene", img: "images/feminiee hygiene.jfif" },
+        { name: "Health Pharma", img: "images/health.jfif" },
+        { name: "Sexual Wellness", img: "images/sexual.jfif" }
+    ]
 };
 
 // 3. INITIALIZATION
+// document.addEventListener('DOMContentLoaded', () => {
+//      const hamburgerMenu = document.getElementById('hamburger-menu');
+//     const mobileNavOverlay = document.getElementById('mobile-nav-overlay'); // New: Mobile menu overlay
+//     const closeMenuBtn = document.getElementById('close-menu-btn'); // New: Close button for mobile menu
+//     initStore();         // Generates the category circles
+//     loadBanners();       // Starts the slider
+//     updateCartCount();   // Syncs the cart icon
+// });
+// 3. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
-    initStore();         // Generates the category circles
-    loadBanners();       // Starts the slider
-    updateCartCount();   // Syncs the cart icon
+
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+const closeMenuBtn = document.getElementById('close-menu-btn');
+const backdrop = document.getElementById('mobile-backdrop');
+
+function openMenu() {
+    mobileNavOverlay.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = "hidden";
+}
+
+function closeMenu() {
+    mobileNavOverlay.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = "auto";
+}
+
+hamburgerMenu.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
+backdrop.addEventListener('click', closeMenu);
+
+/* Swipe to close (Mobile gesture) */
+let startX = 0;
+
+mobileNavOverlay.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
 });
+
+mobileNavOverlay.addEventListener("touchmove", e => {
+    let moveX = e.touches[0].clientX;
+    if (moveX - startX > 100) {
+        closeMenu();
+    }
+});
+    // Existing functions
+    initStore();
+    loadBanners();
+    updateCartCount();
+});
+ // --- Hamburger Menu Toggle ---
+    hamburgerMenu.addEventListener('click', () => {
+        mobileNavOverlay.classList.add('active');
+        body.classList.add('mobile-menu-open'); // Prevent body scroll
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+        mobileNavOverlay.classList.remove('active');
+        body.classList.remove('mobile-menu-open'); // Re-enable body scroll
+    });
+
+    // Close menu if clicked outside (for mobile overlay)
+    document.addEventListener('click', (event) => {
+        // Check if click is outside the overlay AND not on the hamburger button
+        if (!mobileNavOverlay.contains(event.target) && !hamburgerMenu.contains(event.target) && mobileNavOverlay.classList.contains('active')) {
+            mobileNavOverlay.classList.remove('active');
+            body.classList.remove('mobile-menu-open');
+        }
+    });
 let currentSearchId = 0; // Prevents old searches from overwriting new ones
 
 async function searchItems() {
@@ -95,6 +195,7 @@ async function searchItems() {
 }
 // 4. GENERATE CATEGORY GRID (RESTORED)
 function initStore() {
+
     const gridMappings = {
         "Grocery & Kitchen": "grocery-grid",
         "Snacks & Drink": "snacks-grid",
@@ -103,14 +204,14 @@ function initStore() {
     };
 
     for (const [sectionTitle, categories] of Object.entries(storeData)) {
+
         const gridElement = document.getElementById(gridMappings[sectionTitle]);
+
         if (gridElement) {
             gridElement.innerHTML = categories.map(cat => `
-                <div class="category-tile" onclick="openCategory('${cat}')">
-                    <div class="img-wrapper">
-                        <img src="https://placehold.co/100?text=${cat.split(' ')[0]}" alt="${cat}">
-                    </div>
-                    <p>${cat}</p>
+                <div class="cat-card" onclick="openCategory('${cat.name}')">
+                    <img src="${cat.img}" alt="${cat.name}">
+                    <p>${cat.name}</p>
                 </div>
             `).join('');
         }
