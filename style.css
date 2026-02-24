@@ -3,9 +3,14 @@
     --soft-blue: #e3f2fd;
     --soft-pink: #fce4ec;
 }
+body {
+    font-family: 'Okra', sans-serif;margin: 0; background: #fff; scroll-behavior: smooth;
+}
 
-body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff; scroll-behavior: smooth; }
-
+h3{font-size: 24px;
+        margin-bottom: 3px;
+        margin-top: 24px;
+        margin-left: 15px;}
 /* STICKY NAV */
 .sticky-nav {
     position: sticky; top: 0; background: #fff; z-index: 1000;
@@ -111,7 +116,7 @@ body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff; scroll-
     top: -5px;
     right: -10px;
     background: #ff4757;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 50%;
@@ -119,6 +124,71 @@ body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff; scroll-
 }
 
 .hidden { display: none !important; }
+
+/* hamburger menu */
+/* ===============================
+   HAMBURGER BUTTON
+================================ */
+.hamburger-menu {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* ===============================
+   MOBILE MENU WITH BOUNCE
+================================ */
+
+
+/* .mobile-nav-overlay.active {
+    right: 0;
+} */
+
+/* Backdrop */
+.mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+    display: none;
+}
+
+.mobile-backdrop.active {
+    display: block;
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: #ffffff;   /* solid white */
+    z-index: 1000;
+    transition: right 0.4s ease;
+}
+
+.mobile-nav-overlay.active {
+    right: 0;
+}
+/* Menu Links */
+.mobile-nav-links {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 18px;
+}
+
+.mobile-nav-links a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--dark);
+    font-weight: 500;
+}
 
 /* Removes the "X" clear button in Chrome/Safari if you want a custom look */
 #item-search::-webkit-search-cancel-button {
@@ -134,9 +204,9 @@ body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff; scroll-
     background: var(--soft-blue); border-radius: 15px; padding: 15px;
     text-align: center; cursor: pointer; transition: 0.3s;
 }
-.cat-card:nth-child(even) { background: var(--soft-pink); }
+/* .cat-card:nth-child(even) { background: var(--soft-pink); } */
 .cat-card img { width: 80px; height: 80px; object-fit: contain; }
-.cat-card p { font-size: 13px; font-weight: 600; margin-top: 10px; color: #333; }
+.cat-card p { font-size: 15px; font-weight: 600; margin-top: 10px; color: #333; }
 .cat-card:hover { transform: scale(1.05); }
 
 /* PRODUCT VIEW */
@@ -183,20 +253,28 @@ body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff; scroll-
 }
 
 .cat-card p {
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 1.2;
     color: #444;
 }
-
+footer{
+    text-align: center;
+}
 /* Adjust grid for mobile */
 @media (max-width: 600px) {
+    h3{
+        margin-bottom: 3px;
+        margin-top: 24px;
+        margin-left: 15px;
+        font-size: 20px;
+    }
     .category-grid {
         grid-template-columns: repeat(4, 1fr); /* 4 items per row like Blinkit */
         gap: 8px;
         padding: 10px;
     }
-    .cat-card p { font-size: 10px; }
+    .cat-card p { font-size: 11px; }
 }
 .admin-login-card {
     max-width: 400px;
@@ -231,7 +309,7 @@ body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fff; scroll-
     margin-top: 10px;
 }
 :root { --primary: #0c831f; --bg: #f8f8f8; }
-body { font-family: sans-serif; margin: 0; background: var(--bg); }
+body { margin: 0; background: var(--bg); }
 .hidden { display: none !important; }
 
 /* STICKY NAV */
@@ -280,4 +358,27 @@ body { font-family: sans-serif; margin: 0; background: var(--bg); }
 @media (max-width: 600px) {
     .search-box input { width: 150px; }
     .cat-grid { grid-template-columns: repeat(4, 1fr); }
+}
+/* ===== RESPONSIVE NAVBAR ===== */
+@media (max-width: 768px) {
+
+   /* .search-wrapper {
+        display: none;  Hide big search bar 
+    }*/
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .logo svg {
+        width: 130px;
+    }
+
+    .nav-icons {
+        gap: 12px;
+    }
+
+    .hamburger-menu {
+        font-size: 1.6rem;
+    }
 }
